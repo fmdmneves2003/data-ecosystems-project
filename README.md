@@ -1,87 +1,104 @@
-# data-ecosystems-project
-DEGO 2606 Group Project – Credit Application Governance Analysis
 
 
-# Credit Application Governance Analysis  
-DEGO 2606 – Data Ecosystems and Governance in Organizations  
 
-## Executive Summary
+---
 
-This project evaluates the data governance, fairness, and regulatory compliance of NovaCred’s credit approval system.
+# Executive Summary
 
-Our team conducted a structured audit of the credit application dataset to assess:
+This project evaluates the data governance, fairness, and regulatory compliance posture of NovaCred’s automated credit approval system.
+
+Our assessment focused on four dimensions:
 
 - Data quality and integrity  
-- Potential algorithmic bias  
-- Privacy and GDPR compliance risks  
-- Governance control gaps  
+- Algorithmic fairness and potential bias  
+- Privacy and GDPR compliance  
+- Governance control maturity  
 
-From an original dataset of **502 credit applications**, 20 corrupted or invalid observations were removed. The validated dataset (`df_clean`) contains **482 observations** and is used for all subsequent analysis.
+The original dataset contained **502 credit applications**.  
+After a structured validation and cleaning process, **20 corrupted or invalid records were removed**, resulting in a curated dataset (`df_clean`) of **482 validated observations**.
 
-Preliminary findings indicate structural inconsistencies, sensitive data exposure risks, and potential regulatory concerns depending on fairness outcomes.
+Initial findings indicate:
 
----
+- Structural data inconsistencies and missing values  
+- Presence of highly sensitive personal data stored without visible protection mechanisms  
+- Potential governance gaps in validation thresholds and monitoring controls  
 
-## Data Quality Assessment
-
-### Dataset Overview
-
-- Original dataset: 502 rows  
-- Removed due to corruption/invalidity: 20 rows  
-- Final validated dataset (`df_clean`): 482 rows  
-
-All excluded records were isolated into a separate dataset (`df_flagged`), including a column specifying the reason for exclusion.
+Bias and privacy risk levels will be finalized following completion of the fairness and GDPR analysis.
 
 ---
 
-### Identified Issues
+# Data Quality Findings
 
-The following data quality issues were identified:
+## Dataset Overview
 
-- Missing or empty fields (email, gender, date_of_birth)
-- Inconsistent categorical encoding ("Male" vs "M", "Female" vs "F")
-- Inconsistent date formats
-- Structural inconsistencies in optional fields
+- Original dataset: 502 records  
+- Removed due to corruption/invalidity: 20 records  
+- Final validated dataset (`df_clean`): 482 records  
+
+All excluded observations were isolated into a separate dataset (`df_flagged`), which includes a documented reason for each removal.
+
+All subsequent analysis is performed exclusively on `df_clean`.
+
+---
+
+## Identified Data Quality Issues
+
+The following categories of issues were identified:
+
+### Completeness Issues
+- Missing or empty fields (e.g., email, gender, date_of_birth)
+
+### Consistency Issues
+- Inconsistent gender encoding ("Male" vs "M", "Female" vs "F")
+- Multiple date format representations
+- Optional fields inconsistently present across records
+
+### Validity Issues
 - Extreme financial ratios (e.g., Debt-to-Income ratio of 1.85)
+- Edge cases in financial history attributes
 
 ---
 
-### Remediation Approach
+## Remediation Actions Implemented
 
-The cleaning process included:
+The cleaning and validation process included:
 
 - Standardization of categorical variables  
-- Date normalization  
-- Validation rules for financial metrics  
-- Removal of corrupt or incomplete records  
+- Normalization of date formats  
+- Implementation of validation rules for financial metrics  
+- Removal of incomplete or structurally inconsistent records  
 - Creation of:
   - `df_clean` → validated dataset for analysis  
-  - `df_flagged` → excluded records with documented reasons  
+  - `df_flagged` → isolated problematic records  
 
-All bias and compliance analysis is conducted using `df_clean`.
+One observation contains a Debt-to-Income ratio of 1.85. While extreme DTI values may occur in exceptional cases, the absence of formally defined financial validation thresholds highlights a governance control gap.
 
 ---
 
-## Bias & Fairness Analysis
+# Bias & Fairness Analysis
 
-(Section to be completed after bias analysis.)
+(Section pending completion of bias analysis notebook.)
 
-This section evaluates potential disparate impact in credit approval decisions.
-
-The analysis includes:
+This section will evaluate:
 
 - Approval rates by gender  
 - Disparate Impact (DI) ratio calculation  
 - Age-based approval patterns  
-- Investigation of proxy variables (e.g., ZIP code)  
+- Potential proxy discrimination (e.g., ZIP code)  
 
-According to the four-fifths rule, a DI ratio below 0.8 indicates potential disparate impact and regulatory concern.
+According to the four-fifths rule, a DI ratio below 0.8 may indicate potential disparate impact and regulatory exposure.
+
+All fairness analysis will be conducted on the validated dataset (`df_clean`).
+
+Results and risk interpretation will be added upon completion.
 
 ---
 
-## Privacy & GDPR Assessment
+# Privacy & GDPR Assessment
 
-The dataset contains multiple categories of Personally Identifiable Information (PII), including:
+(Section pending completion of privacy analysis notebook.)
+
+The dataset includes multiple categories of Personally Identifiable Information (PII):
 
 - Full name  
 - Email address  
@@ -90,36 +107,49 @@ The dataset contains multiple categories of Personally Identifiable Information 
 - Date of birth  
 - ZIP code  
 
-Key privacy risks identified:
+Preliminary risk considerations include:
 
 - SSN stored in plaintext  
-- No visible pseudonymization or encryption  
-- No documented retention policy  
-- No explicit consent tracking  
-- No audit trail for automated decision logic  
+- No visible pseudonymization or encryption mechanisms  
+- No documented retention or deletion policy  
+- No explicit consent tracking mechanism  
+- No documented audit trail for automated decisions  
 
-Mapping to GDPR principles will be finalized after completion of the privacy analysis.
+Final GDPR compliance mapping will be completed after full privacy review.
 
 ---
 
-## Governance Recommendations
+# Governance Gaps Identified
 
-Preliminary governance recommendations include:
+Based on the data quality assessment and preliminary review, potential governance gaps include:
 
-### Data Controls
+- Lack of formally defined validation thresholds  
+- Absence of automated bias monitoring mechanisms  
+- No documented data retention framework  
+- Insufficient protection of sensitive identifiers  
+
+These gaps may expose NovaCred to operational, regulatory, and reputational risk.
+
+---
+
+# Governance Recommendations
+
+The following preliminary governance controls are recommended:
+
+## Data Controls
 - Standardized data dictionary  
-- Automated validation rules  
-- Defined financial threshold boundaries  
+- Automated validation pipeline  
+- Clearly defined financial threshold boundaries  
 
-### Fairness Controls
+## Fairness Controls
 - Ongoing disparate impact monitoring  
 - Periodic fairness audits  
 - Model transparency documentation  
 
-### Privacy Controls
+## Privacy Controls
 - Pseudonymization or tokenization of SSN  
 - Encryption of sensitive PII  
 - Defined data retention and deletion policies  
 - Audit logging for decision explainability  
 
-These measures would significantly reduce regulatory, reputational, and operational risk.
+These measures would significantly reduce regulatory, reputational, and operational exposure.
