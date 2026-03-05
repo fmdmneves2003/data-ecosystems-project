@@ -1,0 +1,27 @@
+application_id,flag_reason,kept_in_clean
+app_101,SSN collision,False
+app_088,SSN collision,False
+app_016,SSN collision,False
+app_234,SSN collision,False
+app_290,Negative savings balance,False
+app_190,Total spend exceeds annual income,False
+app_049,Credit history exceeds legal possible limit,False
+app_043,Invalid credit history (negative),False
+app_156,Invalid credit history (negative),False
+app_402,Debt to income ratio out of valid range,False
+app_179,Processing timestamp in the future,True
+app_051,Processing timestamp in the future,True
+app_204,Invalid email format,True
+app_299,Invalid email format,True
+app_068,Invalid email format,True
+app_146,Invalid email format,True
+app_075,Missing core identity fields,False
+app_436,Missing core identity fields,False
+app_421,Missing core identity fields,False
+app_479,Missing core identity fields,False
+app_463,Missing core identity fields,False
+app_449,Missing core identity fields,False
+app_120,Missing core identity fields,False
+app_268,Missing core identity fields,False
+app_350,Missing core identity fields,False
+app_165,Missing core identity fields,False
